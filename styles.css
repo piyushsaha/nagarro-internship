@@ -25,3 +25,7 @@ th, td {
 .center {
     text-align: center;
 }
+
+.imgCircle {
+    border-radius: 50%;
+}
