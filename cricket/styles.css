@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* color: #FFFFFF; */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.gradient {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 50%, rgba(0, 212, 255, 1) 100%);
+    min-height: 100vh;
+    /* width: 100%; */
+    /* overflow-x: hidden; */
+}
+
+.matchCard {
+    min-height: 20vh;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 10px;
+    margin: 10px 20px;
+    padding: 20px;
+}
+.imgRounded {
+    border-radius: 50%;
+}

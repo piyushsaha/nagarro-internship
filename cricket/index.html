@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Matches</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+</head>
+
+<body onload="loadMatchesData()">
+    <div class="container-fluid gradient">
+        <h1 class="text-center py-3 text-white">Cricket Matches</h1>
+        <!-- Row 1 -->
+        <div class="row py-2">
+            <div class="col matchCard">
+                <h3 class="text-center matchName">
+                    <img class="imgRounded" src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+                        width="50" style="margin-left: -50px ;" />Loading
+                </h3>
+                <br />
+                <p class="matchType"><strong>Match type:</strong> Loading...</p>
+                <p class="venue"><strong>Venue:</strong> Loading...</p>
+                <p class="matchStatus"><strong>Match Status:</strong> Loading...</p>
+                <p class="date"><strong>Date:</strong> Loading...</p>
+            </div>
+            <div class="col matchCard">
+                <h3 class="text-center matchName">
+                    <img class="imgRounded" src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+                        width="50" style="margin-left: -50px ;" />Loading
+                </h3>
+                <br />
+                <p class="matchType"><strong>Match type:</strong> Loading...</p>
+                <p class="venue"><strong>Venue:</strong> Loading...</p>
+                <p class="matchStatus"><strong>Match Status:</strong> Loading...</p>
+                <p class="date"><strong>Date:</strong> Loading...</p>
+            </div>
+            <div class="col matchCard">
+                <h3 class="text-center matchName">
+                    <img class="imgRounded" src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+                        width="50" style="margin-left: -50px ;" />Loading
+                </h3>
+                <br />
+                <p class="matchType"><strong>Match type:</strong> Loading...</p>
+                <p class="venue"><strong>Venue:</strong> Loading...</p>
+                <p class="matchStatus"><strong>Match Status:</strong> Loading...</p>
+                <p class="date"><strong>Date:</strong> Loading...</p>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="row py-2">
+            <div class="col matchCard">
+                <h3 class="text-center matchName">
+                    <img class="imgRounded" src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+                        width="50" style="margin-left: -50px ;" />Loading
+                </h3>
+                <br />
+                <p class="matchType"><strong>Match type:</strong> Loading...</p>
+                <p class="venue"><strong>Venue:</strong> Loading...</p>
+                <p class="matchStatus"><strong>Match Status:</strong> Loading...</p>
+                <p class="date"><strong>Date:</strong> Loading...</p>
+            </div>
+            <div class="col matchCard">
+                <h3 class="text-center matchName">
+                    <img class="imgRounded" src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+                        width="50" style="margin-left: -50px ;" />Loading
+                </h3>
+                <br />
+                <p class="matchType"><strong>Match type:</strong> Loading...</p>
+                <p class="venue"><strong>Venue:</strong> Loading...</p>
+                <p class="matchStatus"><strong>Match Status:</strong> Loading...</p>
+                <p class="date"><strong>Date:</strong> Loading...</p>
+            </div>
+            <div class="col matchCard">
+                <h3 class="text-center matchName">
+                    <img class="imgRounded" src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'
+                        width="50" style="margin-left: -50px ;" />Loading
+                </h3>
+                <br />
+                <p class="matchType"><strong>Match type:</strong> Loading...</p>
+                <p class="venue"><strong>Venue:</strong> Loading...</p>
+                <p class="matchStatus"><strong>Match Status:</strong> Loading...</p>
+                <p class="date"><strong>Date:</strong> Loading...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let matchNames = document.querySelectorAll('.matchName');
+        let matchTypes = document.querySelectorAll('.matchType');
+        let venues = document.querySelectorAll('.venue');
+        let matchStatuses = document.querySelectorAll('.matchStatus');
+        let dates = document.querySelectorAll('.date');
+
+        let matchesData;
+
+        function loadMatchesData() {
+            fetch('https://api.cricapi.com/v1/matches?apikey=20a6ebc0-42c5-4128-ad16-3f9c2a4d75c2&offset=5')
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response, 'data');
+                    matchesData = response.data.splice(0, 6);
+                    console.log(matchesData);
+                })
+                .then((response) => {
+                    for(var i = 0; i < matchesData.length; i++) {
+                        console.log(matchesData[i], 'doing');
+                        matchNames[i].innerHTML = `<img class="imgRounded" src='${matchesData[i].teamInfo[0]?.img  || 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/TBD-W.svg/768px-TBD-W.svg.png?20200316192217'}' width="30" />${matchesData[i].teamInfo[0]?.name  || 'TBD'} vs ${matchesData[i].teamInfo[1]?.name || 'TBD'}<img class="imgRounded" src='${matchesData[i].teamInfo[1]?.img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/TBD-W.svg/768px-TBD-W.svg.png?20200316192217'}' width="30" />`;
+
+                        matchTypes[i].innerHTML = matchesData[i]?.matchType ? `<strong>Match type:</strong> ${matchesData[i].matchType.toUpperCase()}` : '';
+                        venues[i].innerHTML = `<strong>Venue:</strong> ${matchesData[i].venue}`;
+                        matchStatuses[i].innerHTML = `<strong>Match Status:</strong> ${matchesData[i].status}`;
+                        dates[i].innerHTML = `<strong>Date:</strong> ${matchesData[i].date}`; 
+                    }
+                })
+        }
+    </script>
+</body>
+
+</html>
