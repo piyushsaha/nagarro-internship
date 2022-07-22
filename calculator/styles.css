@@ -88,3 +88,9 @@ button {
 .ansTxt {
     color: green;
 }
+
+@media screen and (max-width: 100000000px) {
+    .calculatorBody {
+        max-width: 90vw;
+    }
+}
